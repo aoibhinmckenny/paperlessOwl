@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaperlessOwl</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="owl-banner.jpg">
+    <audio id="emailSound" src="audio/emailSound.mp3" preload="auto"></audio>
+
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="container" id="loginContainer">
+    <div class="site-name">✉️ PaperlessOwl</div>
+
+    <!-- LEFT LOGIN SECTION -->
+    <div class="login-section">
+        <h1>PaperlessOwl</h1>
+        <form id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMsg" class="muted"></p>
+    </div>
+
+    <!-- RIGHT IMAGE SECTION -->
+    <div class="image-section">
+        <img src="image.jpeg" alt="Paperless Owl Illustration">
+    </div>
+</div>
+
+<!-- FULL PAGE INBOX -->
+<div id="inboxPage" class="hidden">
+    <div class="inbox-container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">✉️ PaperlessOwl</div>
+            <nav>
+                <ul>
+                    <li class="active">Inbox</li>
+                    <li>Sent</li>
+                    <li>Archive</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- MIDDLE EMAIL LIST -->
+        <section class="inbox-list">
+            <div class="inbox-header">
+                <h2 id="inboxTitle">Inbox</h2>
+                <button id="logoutBtn">Logout</button>
+            </div>
+            <ul id="emailList" class="email-list"></ul>
+        </section>
+
+        <!-- RIGHT EMAIL PREVIEW -->
+        <section class="email-preview" id="emailPreview">
+            <div class="preview-placeholder">Select an email to read</div>
+        </section>
+
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
