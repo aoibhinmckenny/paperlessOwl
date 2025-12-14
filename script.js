@@ -199,6 +199,17 @@ emails[index].read = true; // <-- marks this email as read
             read: false
           });
         }, 300000); // clue after 5 minutes
+
+        setTimeout(() => {
+                playEmailSound();
+                  addNewEmail({
+                    sender: 'unknown@tips.net',
+                    subject: 'Did you find the old band site yet?',
+                    date: '—',
+                    body: 'Make sure to check the comments on the Rust and Ruin track on soundcloud',
+                    read: false
+                  });
+                }, 600000); // clue after 5 minutes
       });
     }
   }
