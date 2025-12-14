@@ -1,4 +1,3 @@
-// === Elements ===
 console.log("✅ Script loaded");
 
 const loginForm = document.getElementById('loginForm');
@@ -14,11 +13,6 @@ function playEmailSound() {
   emailSound.currentTime = 0;
   emailSound.play();
 }
-
-
-// === Fake credentials for testing ===
-const USER = 'journalist';
-const PASS = 'password123';
 
 let currentUser = '';
 let userEmail = '';
@@ -97,7 +91,17 @@ const emails = [
  },
 ];
 
-// === Handle login ===
+//Forgot password
+const forgotPassword = document.getElementById('forgotPassword');
+
+forgotPassword.addEventListener('click', (e) => {
+  e.preventDefault();
+  loginMsg.textContent = 'Enter your name in the username section. Any password will work.';
+  loginMsg.style.color = '#888';
+});
+
+
+//Handle login
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value;
@@ -195,7 +199,7 @@ emails[index].read = true; // <-- marks this email as read
             sender: 'unknown@tips.net',
             subject: 'Check out the audio file',
             date: '—',
-            body: 'Make sure to check out an audio file for Rust and Ruin someone mentioned on Reddit!',
+            body: 'Make sure to check out the audio file for Rust and Ruin someone commented on Reddit!',
             read: false
           });
         }, 300000); // clue after 5 minutes
@@ -216,13 +220,14 @@ emails[index].read = true; // <-- marks this email as read
 
 
 logoutBtn.addEventListener('click', () => {
+location.reload();
+  /*RESET
   inboxPage.classList.add('hidden');
   loginContainer.classList.remove('hidden');
   loginMsg.textContent = '';
   document.getElementById('username').value = '';
   document.getElementById('password').value = '';
 
-  //RESET//
   currentUser = '';
     userEmail = '';
     emailPreview.innerHTML = '<div class="preview-placeholder">Select an email to read</div>';
@@ -230,6 +235,7 @@ logoutBtn.addEventListener('click', () => {
 
     const inboxTitle = document.getElementById('inboxTitle');
     inboxTitle.textContent = 'Inbox';
+    */
 });
 
 function addNewEmail(email) {

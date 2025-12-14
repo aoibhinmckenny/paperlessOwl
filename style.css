@@ -68,6 +68,15 @@ body, html {
   font-size: 0.9rem;
 }
 
+.volume-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 10px;
+  text-align: center;
+  font-style: italic;
+}
+
+
 /* Right image section */
 .image-section {
   flex: 1;
