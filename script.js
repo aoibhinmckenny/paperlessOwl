@@ -9,6 +9,8 @@ const emailPreview = document.getElementById('emailPreview');
 const logoutBtn = document.getElementById('logoutBtn');
 const emailSound = document.getElementById('emailSound');
 
+let clickTriggered = false; //to prevent new emails being added multiple time if this user clicks the link more then once
+
 function playEmailSound() {
   emailSound.currentTime = 0;
   emailSound.play();
@@ -19,6 +21,14 @@ let userEmail = '';
 
 // === Fake email data ===
 const emails = [
+{
+  sender: 'fanmail@communityfm.org',
+  subject: 'Heard this on the radio?',
+  date: 'Oct 28, 2025',
+  body: 'I was listening to radio and they played Steel Reverie. It got me thinking... Do you know where they disappeared to? The whole story feels like it just vanished into thin air. <a href="audio/RadioBroadcast.wav" target="_blank">RadioBroadcast.wav</a>',
+  read: false,
+
+},
  {
    sender: 'm.turner@cityledger.com',
    subject: 'Follow-up on your festival piece',
@@ -128,7 +138,7 @@ loginForm.addEventListener('submit', (e) => {
                 sender: 'r_hartley@inboxmail.net',
                  subject: 'Look into this band?',
                  date: 'Nov 9, 2025',
-                 body: 'Hey, I know you’re busy, but if you get a chance, check out this Reddit page. There’s something strange going on with this band. Their songs, interviews, even old gig posters have vanished from everywhere. There’s very little information about them anywhere, but they were one of the big up-and-coming bands in the ’90s. <a href="https://www.reddit.com/r/steelreverie/" target="_blank" rel="noopener noreferrer">r/steelreverie</a>.',
+                 body: 'Hey, I know you’re busy, but if you get a chance, check out this Reddit page. There’s something strange going on with this band. Their songs, interviews, even old gig posters have vanished from everywhere. There’s very little information about them anywhere, but they were one of the big up-and-coming bands in the ’80s. <a href="https://www.reddit.com/r/steelreverie/" target="_blank" rel="noopener noreferrer">r/steelreverie</a>.',
                  read: false
       });
 
@@ -159,7 +169,7 @@ function renderInbox() {
 
 // === Open email preview ===
 function openEmail(index) {
-emails[index].read = true; // <-- marks this email as read
+emails[index].read = true; // marks this email as read
 
   const email = emails[index];
   emailPreview.innerHTML = `
@@ -174,12 +184,11 @@ emails[index].read = true; // <-- marks this email as read
   renderInbox(); // refresh the list to remove "unread" class if needed
 
   // --- Watch for Reddit link clicks ---
-    let clickTriggered = false; //to prevent new emails being added multiple time if this user clicks the link more then once
+    
     const redditLink = emailPreview.querySelector('a[href*="reddit.com"]');
     if (redditLink && !clickTriggered) {
       redditLink.addEventListener('click', () => {
       clickTriggered = true;
-        console.log("Reddit link clicked — new email coming soon...");
 
         // Wait a minute, then add a new email into the inbox
         setTimeout(() => {
@@ -213,7 +222,18 @@ emails[index].read = true; // <-- marks this email as read
                     body: 'Make sure to check the comments on the Rust and Ruin track on soundcloud',
                     read: false
                   });
-                }, 600000); // clue after 5 minutes
+                }, 600000); // clue after 10 minutes
+
+        setTimeout(() => {
+                playEmailSound();
+                  addNewEmail({
+                    sender: 'unknown@tips.net',
+                    subject: 'Looking for a password?',
+                    date: '—',
+                    body: 'Check on the reddit page.',
+                    read: false
+                  });
+                }, 1200000); // clue after 20 minutes
       });
     }
   }
